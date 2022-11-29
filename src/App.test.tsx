@@ -1,9 +1,17 @@
-import React from 'react';
-import { render, screen } from '@testing-library/react';
-import App from './App';
+import { render, screen } from "@testing-library/react";
+import App from "./App";
+import { isValuesNullish } from "./layout/content/NewTransactionForm/utils";
+import { initFormState } from "./hooks/useNewTransactionForm";
 
-test('renders learn react link', () => {
-  render(<App />);
-  const linkElement = screen.getByText(/learn react/i);
-  expect(linkElement).toBeInTheDocument();
+describe("basic tests", () => {
+  test("display app conteiner", () => {
+    render(<App />);
+    const appWrapper = screen.getByTestId("app-container");
+    expect(appWrapper).toBeInTheDocument();
+  });
+
+  test("check isValuesNullish function", () => {
+    const isAnyValueNullish = isValuesNullish(initFormState);
+    expect(isAnyValueNullish).toBeTruthy();
+  });
 });

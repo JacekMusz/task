@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { FormInputs, FormInputsLabels } from "../types";
 
-const initFormState = {
+export const initFormState = {
   [FormInputs.AMOUNT]: {
     value: null,
     label: FormInputsLabels.AMOUNT,
@@ -29,7 +29,7 @@ const initFormState = {
   },
 };
 
-type FormStateType = {
+export type FormStateType = {
   [key in FormInputs]: {
     value: null | (key extends FormInputs.ACCOUNT_NUMBER ? number : string);
     label: FormInputsLabels;

@@ -6,6 +6,7 @@ import { createTransaction } from "../../../store/features/transactions";
 import { AppDispatch } from "../../../store/store";
 import { FormInputs, FormInputsLabels, Transaction } from "../../../types";
 import "./newTransactionForm.scss";
+import { isValuesNullish } from "./utils";
 
 const NewTransactionForm = () => {
   const { formState, handleUpdateForm } = useNewTransactionForm();
@@ -14,11 +15,7 @@ const NewTransactionForm = () => {
   const handleSubmitForm = (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
 
-    const isValuesNullish = !Object.keys(formState).some(
-      (key) => formState[key as FormInputs].value === null
-    );
-
-    if (isValuesNullish) {
+    if (!isValuesNullish) {
       dispatch(
         createTransaction({
           amount: formState.amount.value,
