@@ -1,7 +1,4 @@
-//COMMENT: IN GENERAL THIS SHOULD BE ENVS
-
-export const PORT = "3001";
-export const API_URL = `http://localhost:${PORT}`;
+export const API_URL = process.env.REACT_APP_API_URL;
 
 export enum API_PATHS {
   TRANSACTIONS = "/transactions",
