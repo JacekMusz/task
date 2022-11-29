@@ -3,6 +3,7 @@ export enum FormInputsLabels {
   ACCOUNT_NUMBER = "Account number",
   ADDRESS = "Address",
   DESCRIPTION = "Description",
+  BENEFICIARY = "Beneficiary",
 }
 
 export enum FormInputs {
@@ -10,6 +11,7 @@ export enum FormInputs {
   ACCOUNT_NUMBER = "account_number",
   ADDRESS = "address",
   DESCRIPTION = "description",
+  BENEFICIARY = "beneficiary",
 }
 
 export interface Transaction {
@@ -31,4 +33,11 @@ export enum METHODS {
   CREATE = "create",
   DELETE = "delete",
   UPDATE = "update",
+}
+
+export enum StoreDataStatus {
+  "IDLE" = "idle",
+  "PENDIG" = "pending",
+  "SUCCEEDED" = "succeeded",
+  "FAILED" = "failed",
 }

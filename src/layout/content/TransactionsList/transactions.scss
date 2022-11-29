@@ -1,6 +1,8 @@
 @import "/src/constans.scss";
+
 .transactions-list {
   flex-grow: 1;
+  width: 100%;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -9,7 +11,7 @@
   ul {
     margin: 0;
     min-height: 100px;
-
+    width: 100%;
     max-height: calc(
       100vh - $header-height - $desktop-form-wrapper-height -
         $desktop-vertical-margins-sum - $footer-height
@@ -25,46 +27,25 @@
   padding: 15px 0;
   border-bottom: 1px solid red;
 
-  .amount {
-    width: 10%;
+  .list-item__cell {
     white-space: nowrap;
     overflow: hidden;
     text-overflow: ellipsis;
   }
 
-  .beneficiary {
-    width: 15%;
-    white-space: nowrap;
-    overflow: hidden;
-    text-overflow: ellipsis;
-  }
-
-  .account {
-    width: 15%;
-    white-space: nowrap;
-    overflow: hidden;
-    text-overflow: ellipsis;
-  }
-
+  .amount,
   .date {
     width: 10%;
-    white-space: nowrap;
-    overflow: hidden;
-    text-overflow: ellipsis;
   }
 
-  .address {
-    width: 20%;
-    white-space: nowrap;
-    overflow: hidden;
-    text-overflow: ellipsis;
+  .beneficiary,
+  .account {
+    width: 15%;
   }
 
+  .address,
   .description {
     width: 20%;
-    white-space: nowrap;
-    overflow: hidden;
-    text-overflow: ellipsis;
   }
 
   .remove {
