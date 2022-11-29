@@ -15,7 +15,7 @@ const NewTransactionForm = () => {
   const handleSubmitForm = (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
 
-    if (!isValuesNullish) {
+    if (!isValuesNullish(formState)) {
       dispatch(
         createTransaction({
           amount: formState.amount.value,
