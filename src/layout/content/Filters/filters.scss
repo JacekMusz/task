@@ -1,0 +1,24 @@
+@import "/src/constans.scss";
+
+.filters {
+  display: flex;
+  flex-direction: column;
+
+  width: 100%;
+
+  @media (min-width: $desktop-breakpoint) {
+    justify-content: space-between;
+
+    width: 40%;
+  }
+
+  .balance {
+    padding: 10px;
+    background-color: orange;
+  }
+
+  .filter {
+    padding: 10px;
+    background-color: brown;
+  }
+}
