@@ -1,0 +1,70 @@
+@import '/src/constans.scss';
+
+.App-content {
+    flex-grow: 1;
+    display: flex;
+    flex-direction: column;
+
+    width: calc(100% - 10px);
+    max-width: $max-content-width;
+    padding: 5px;
+
+    background-color: yellow;
+
+    .form-and-filters-wrapper {
+        display: flex;
+        flex-direction: column;
+
+        min-height: 200px;
+        margin-bottom: 10px;
+
+        @media (min-width: $desktop-breakpoint) {
+            flex-direction: row-reverse;
+        }
+
+        .transaction-form {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+
+            background-color: rgb(4, 248, 167);
+            height: 200px;
+
+            @media (min-width: $desktop-breakpoint) {
+                width: 60%;
+            }
+        }
+
+        .filters {
+            display: flex;
+            flex-direction: column; 
+            
+            width: 100%;
+
+            @media (min-width: $desktop-breakpoint) {
+                justify-content: space-between;
+
+                width: 40%;
+            }
+
+            .balance {
+                padding: 10px;
+                background-color: orange;
+            }
+
+            .filter {
+                padding: 10px;
+                background-color: brown; 
+            }
+        }
+    }
+
+    .transactions-list {
+        flex-grow: 1;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+
+        background-color: green;
+    }
+}
