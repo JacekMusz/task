@@ -1,6 +1,7 @@
 import NewTransactionForm from "./NewTransactionForm";
 import "./content.scss";
 import Filters from "./Filters";
+import TransactionList from "./TransactionsList";
 
 const Content = () => {
   return (
@@ -9,7 +10,7 @@ const Content = () => {
         <NewTransactionForm />
         <Filters />
       </div>
-      <div className="transactions-list">table with transactions</div>
+      <TransactionList />
     </div>
   );
 };
