@@ -1,7 +1,11 @@
 import React from "react";
 import { TransactionDTO } from "../../../types";
 
-const ListItem: React.FC<TransactionDTO> = ({
+interface ListItemProps extends TransactionDTO {
+  handleRemoveTransaction: (id: TransactionDTO["id"]) => void;
+}
+
+const ListItem: React.FC<ListItemProps> = ({
   id,
   amount,
   beneficiary,
@@ -9,17 +13,18 @@ const ListItem: React.FC<TransactionDTO> = ({
   address,
   date,
   description,
+  handleRemoveTransaction,
 }) => {
   return (
     <li className="list-item">
-      <div className="amount">{amount}</div>
-      <div className="beneficiary">{beneficiary}</div>
-      <div className="account">{account}</div>
-      <div className="date">{address}</div>
-      <div className="address">{date}</div>
-      <div className="description">{description}</div>
-      <div className="remove">
-        <button onClick={() => {}}>remove</button>
+      <div className="amount list-item__cell">{amount}</div>
+      <div className="beneficiary list-item__cell">{beneficiary}</div>
+      <div className="account list-item__cell">{account}</div>
+      <div className="date list-item__cell">{address}</div>
+      <div className="address list-item__cell">{date}</div>
+      <div className="description list-item__cell">{description}</div>
+      <div className="remove list-item__cell">
+        <button onClick={() => handleRemoveTransaction(id)}>remove</button>
       </div>
     </li>
   );

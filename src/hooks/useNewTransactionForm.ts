@@ -22,6 +22,11 @@ const initFormState = {
     label: FormInputsLabels.DESCRIPTION,
     formInput: FormInputs.DESCRIPTION,
   },
+  [FormInputs.BENEFICIARY]: {
+    value: null,
+    label: FormInputsLabels.BENEFICIARY,
+    formInput: FormInputs.BENEFICIARY,
+  },
 };
 
 type FormStateType = {

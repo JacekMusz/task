@@ -12,11 +12,11 @@ type BaseInputProps = {
   ) => void;
 };
 
-const BaseInput: React.FC<
+const BaseFormInput: React.FC<
   InputHTMLAttributes<HTMLInputElement> & BaseInputProps
 > = ({ label, handleUpdateForm, formInput, ...rest }) => {
   return (
-    <div className={"base-input"}>
+    <div className={"base-form-input"}>
       <label>
         {`${label}:`}
         <input {...rest} onChange={(e) => handleUpdateForm(e, formInput)} />
@@ -25,4 +25,4 @@ const BaseInput: React.FC<
   );
 };
 
-export default React.memo(BaseInput);
+export default React.memo(BaseFormInput);
