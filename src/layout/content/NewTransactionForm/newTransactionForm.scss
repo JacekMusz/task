@@ -1,0 +1,15 @@
+@import "/src/constans.scss";
+
+.transaction-form {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+
+  background-color: rgb(4, 248, 167);
+  height: 200px;
+
+  @media (min-width: $desktop-breakpoint) {
+    width: 60%;
+  }
+}
