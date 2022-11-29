@@ -1,6 +1,7 @@
 @import "/src/constans.scss";
 
 .transaction-form {
+  flex-grow: 1;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -11,5 +12,6 @@
 
   @media (min-width: $desktop-breakpoint) {
     width: 60%;
+    height: 100%;
   }
 }
