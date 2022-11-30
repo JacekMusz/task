@@ -41,6 +41,14 @@ Send us back your app with instruction how to run app and tests. Preferred way i
 
 ## -------------------------------------------------------------------- MY COMMENT --------------------------------------------------------------------
 
+## ----------------------------------------------------------------------------------------------------------------------------------------------------
+
+## ----------------------------------------------------------------------------------------------------------------------------------------------------
+
+## ----------------------------------------------------------------------------------------------------------------------------------------------------
+
+## ----------------------------------------------------------------------------------------------------------------------------------------------------
+
 # how to run localy ?
 
 npm install
@@ -51,6 +59,12 @@ npm start
 I wanted to handle form and validation on my own, with native HTML methods (because of simple validation and requirements).
 Now (at the end) I regret it :D
 I would use react-hook-forms and yup.
+
+UPDATE 30.11.2022 13:30
+I've done a small refactor on development branch
+link: https://github.com/JacekMusz/task/pull/2/commits/45d665de8fd8a3194bff829c3af347027f445abe
+
+There are more generic inputs form and I used react-hook-forms and yup
 
 # UI
 
