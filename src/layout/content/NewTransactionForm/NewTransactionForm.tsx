@@ -28,7 +28,7 @@ const NewTransactionForm = () => {
         {formFieldsConfig.map((field) => {
           return (
             <Input
-              key={field.name}
+              key={field.label}
               name={field.name}
               label={field.label}
               onChange={handleUpdateForm2}
@@ -37,6 +37,7 @@ const NewTransactionForm = () => {
           );
         })}
         <button type="submit">submit</button>
+        <button type="reset">reset</button>
       </form>
     </div>
   );

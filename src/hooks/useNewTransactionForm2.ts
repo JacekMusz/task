@@ -45,6 +45,7 @@ export const useNewTransactionForm2 = (fields: FieldData[]) => {
     });
 
     setFormState2(initForm);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   return {
