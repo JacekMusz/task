@@ -1,0 +1,16 @@
+@import "/src/constans.scss";
+
+.form-group {
+  display: flex;
+  justify-content: flex;
+  flex-direction: column;
+
+  .invalid-feedback {
+    font-size: 6px;
+    color: red;
+  }
+
+  .is-invalid {
+    border: 1px solid red;
+  }
+}

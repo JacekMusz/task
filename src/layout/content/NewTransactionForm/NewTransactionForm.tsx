@@ -1,71 +1,99 @@
-import { FormEvent } from "react";
 import { useDispatch } from "react-redux";
-import BaseFormInput from "../../../components/BaseFormInput";
-import useNewTransactionForm from "../../../hooks/useNewTransactionForm";
 import { createTransaction } from "../../../store/features/transactions";
 import { AppDispatch } from "../../../store/store";
-import { FormInputs, FormInputsLabels, Transaction } from "../../../types";
+import { FormInputsLabels, Transaction } from "../../../types";
 import "./newTransactionForm.scss";
-import { isValuesNullish } from "./utils";
+import { useForm } from "react-hook-form";
+import { yupResolver } from "@hookform/resolvers/yup";
+import * as Yup from "yup";
+import NewBaseInputForm from "../../../components/NewBaseFormInput/NewBaseInputForm";
+
+type UserSubmitForm = {
+  beneficiary: string;
+  amount: number;
+  account: string;
+  address: string;
+  description: string;
+};
+
+const validationSchema = Yup.object().shape({
+  beneficiary: Yup.string().required("beneficiary is required"),
+  amount: Yup.number()
+    .positive("amount must be positive")
+    .required("amount is required"),
+  account: Yup.string().required("account is required"),
+  address: Yup.string().required("address is required"),
+  description: Yup.string().required("description is required"),
+});
 
 const NewTransactionForm = () => {
-  const { formState, handleUpdateForm } = useNewTransactionForm();
   const dispatch = useDispatch<AppDispatch>();
 
-  const handleSubmitForm = (e: FormEvent<HTMLFormElement>) => {
-    e.preventDefault();
+  const {
+    register,
+    handleSubmit,
+    reset,
+    formState: { errors },
+  } = useForm<UserSubmitForm>({
+    resolver: yupResolver(validationSchema),
+  });
 
-    if (!isValuesNullish(formState)) {
-      dispatch(
-        createTransaction({
-          amount: formState.amount.value,
-          beneficiary: formState.beneficiary.value,
-          account: formState.account_number.value,
-          address: formState.address.value,
-          date: new Date(),
-          description: formState.description.value,
-        } as unknown as Transaction)
-      );
-    }
+  const handleSendForm = (data: Omit<Transaction, "date">) => {
+    dispatch(
+      createTransaction({
+        ...data,
+        date: new Date().toString(),
+      })
+    );
+  };
+  const onSubmit = (data: UserSubmitForm) => {
+    handleSendForm(data);
   };
 
   return (
     <div className="transaction-form">
-      <form onSubmit={handleSubmitForm}>
-        <BaseFormInput
-          required
-          label={FormInputsLabels.BENEFICIARY as FormInputsLabels}
-          formInput={FormInputs.BENEFICIARY}
-          handleUpdateForm={handleUpdateForm}
+      <form onSubmit={handleSubmit(onSubmit)}>
+        <NewBaseInputForm
+          placeholder={"type here..."}
+          label={FormInputsLabels.BENEFICIARY}
+          register={register("beneficiary")}
+          type={"string"}
+          errorMessage={errors.beneficiary?.message}
         />
-        <BaseFormInput
-          required
-          label={FormInputsLabels.AMOUNT}
-          formInput={FormInputs.AMOUNT}
-          min={0}
-          type="number"
-          handleUpdateForm={handleUpdateForm}
-        />
-        <BaseFormInput
-          required
+        <NewBaseInputForm
+          placeholder={"type here..."}
           label={FormInputsLabels.ACCOUNT_NUMBER}
-          formInput={FormInputs.ACCOUNT_NUMBER}
-          type="number"
-          handleUpdateForm={handleUpdateForm}
+          register={register("account")}
+          type={"string"}
+          errorMessage={errors.account?.message}
         />
-        <BaseFormInput
-          required
+        <NewBaseInputForm
+          placeholder={"type here..."}
+          label={FormInputsLabels.AMOUNT}
+          register={register("amount")}
+          type={"number"}
+          errorMessage={errors.amount?.message}
+        />
+        <NewBaseInputForm
+          placeholder={"type here..."}
           label={FormInputsLabels.ADDRESS}
-          formInput={FormInputs.ADDRESS}
-          handleUpdateForm={handleUpdateForm}
+          register={register("address")}
+          type={"string"}
+          errorMessage={errors.address?.message}
         />
-        <BaseFormInput
-          required
+        <NewBaseInputForm
+          placeholder={"type here..."}
           label={FormInputsLabels.DESCRIPTION}
-          formInput={FormInputs.DESCRIPTION}
-          handleUpdateForm={handleUpdateForm}
+          register={register("description")}
+          type={"string"}
+          errorMessage={errors.beneficiary?.message}
         />
-        <button type="submit">Send New Transaction</button>
+        <button type="reset" onClick={() => reset()} className="btn">
+          reset
+        </button>
+        <button type="submit" className="btn">
+          send
+        </button>
       </form>
     </div>
   );
