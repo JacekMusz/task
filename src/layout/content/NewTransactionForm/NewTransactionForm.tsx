@@ -1,74 +1,69 @@
 import { FormEvent } from "react";
 import { useDispatch } from "react-redux";
-import BaseFormInput from "../../../components/BaseFormInput";
-import useNewTransactionForm from "../../../hooks/useNewTransactionForm";
-import { createTransaction } from "../../../store/features/transactions";
+
 import { AppDispatch } from "../../../store/store";
-import { FormInputs, FormInputsLabels, Transaction } from "../../../types";
+import { FormInputs, FormInputsLabels } from "../../../types";
+import { Input } from "../../../components/BaseFormInput2/BaseFormInput2";
 import "./newTransactionForm.scss";
-import { isValuesNullish } from "./utils";
+
+import {
+  FieldData,
+  useNewTransactionForm2,
+} from "../../../hooks/useNewTransactionForm2";
 
 const NewTransactionForm = () => {
-  const { formState, handleUpdateForm } = useNewTransactionForm();
+  const { formState2, handleUpdateForm2 } =
+    useNewTransactionForm2(formFieldsConfig);
+
   const dispatch = useDispatch<AppDispatch>();
 
   const handleSubmitForm = (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-
-    if (!isValuesNullish(formState)) {
-      dispatch(
-        createTransaction({
-          amount: formState.amount.value,
-          beneficiary: formState.beneficiary.value,
-          account: formState.account_number.value,
-          address: formState.address.value,
-          date: new Date(),
-          description: formState.description.value,
-        } as unknown as Transaction)
-      );
-    }
+    console.log(formState2);
   };
 
   return (
     <div className="transaction-form">
       <form onSubmit={handleSubmitForm}>
-        <BaseFormInput
-          required
-          label={FormInputsLabels.BENEFICIARY as FormInputsLabels}
-          formInput={FormInputs.BENEFICIARY}
-          handleUpdateForm={handleUpdateForm}
-        />
-        <BaseFormInput
-          required
-          label={FormInputsLabels.AMOUNT}
-          formInput={FormInputs.AMOUNT}
-          min={0}
-          type="number"
-          handleUpdateForm={handleUpdateForm}
-        />
-        <BaseFormInput
-          required
-          label={FormInputsLabels.ACCOUNT_NUMBER}
-          formInput={FormInputs.ACCOUNT_NUMBER}
-          type="number"
-          handleUpdateForm={handleUpdateForm}
-        />
-        <BaseFormInput
-          required
-          label={FormInputsLabels.ADDRESS}
-          formInput={FormInputs.ADDRESS}
-          handleUpdateForm={handleUpdateForm}
-        />
-        <BaseFormInput
-          required
-          label={FormInputsLabels.DESCRIPTION}
-          formInput={FormInputs.DESCRIPTION}
-          handleUpdateForm={handleUpdateForm}
-        />
-        <button type="submit">Send New Transaction</button>
+        {formFieldsConfig.map((field) => {
+          return (
+            <Input
+              key={field.name}
+              name={field.name}
+              label={field.label}
+              onChange={handleUpdateForm2}
+              type={field.type}
+            />
+          );
+        })}
+        <button type="submit">submit</button>
       </form>
     </div>
   );
 };
 
 export default NewTransactionForm;
+
+const formFieldsConfig: FieldData[] = [
+  {
+    name: FormInputs.BENEFICIARY,
+    type: "text",
+    label: FormInputsLabels.BENEFICIARY,
+  },
+  {
+    name: FormInputs.ACCOUNT_NUMBER,
+    type: "text",
+    label: FormInputsLabels.ACCOUNT_NUMBER,
+  },
+  {
+    name: FormInputs.AMOUNT,
+    type: "number",
+    label: FormInputsLabels.AMOUNT,
+    attrs: { min: 0 },
+  },
+  {
+    name: FormInputs.DESCRIPTION,
+    type: "text",
+    label: FormInputsLabels.DESCRIPTION,
+  },
+];
