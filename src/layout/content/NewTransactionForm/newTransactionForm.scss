@@ -6,9 +6,9 @@
   justify-content: center;
   align-items: center;
   flex-direction: column;
+  overflow-y: scroll;
 
   background-color: rgb(4, 248, 167);
-  height: 200px;
 
   @media (min-width: $desktop-breakpoint) {
     width: 60%;

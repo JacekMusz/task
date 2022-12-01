@@ -395,6 +395,15 @@
       "address": "179 Dewey Place, Roeville, Colorado, 3854",
       "date": "2014-08-16T01:20:28",
       "description": "Non consequat ex pariatur non labore officia Lorem ullamco eu consequat ullamco excepteur Lorem."
+    },
+    {
+      "description": "asASas",
+      "address": "AsAS",
+      "account": "2131233",
+      "amount": 123123,
+      "beneficiary": "ASasAS",
+      "date": "Wed Nov 30 2022 13:24:23 GMT+0100 (czas środkowoeuropejski standardowy)",
+      "id": 50
     }
   ]
 }
